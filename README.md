@@ -1,12 +1,14 @@
 # `bundle binstubs --all` generates a binstub for `bundle` that invokes the wrong version of Bundler
 
+Reproduction of [rubygems issue #4774](https://github.com/rubygems/rubygems/issues/4774)
+
 Found on macOS 11.4 with homebrew rbenv 1.1.2, using ruby 2.7.3 and bundler 2.2.22
 
 The generated binstub correctly finds the bundler version from the Gemfile, but then intentionally approximates the requirement, then resolves that requirement to an incompatible newer version of bundler
 
 This reproduction requires `bash` and `rbenv`.  Run `runme.sh` to generate the binstub and demonstrate the problem.
 
-I've included a corrected binstub at [bin/bundle_corrected](bin/bundle_corrected)
+I've included a corrected binstub at [bin/bundle_corrected](bin/bundle_corrected), but didn't look in to how the binstub is generated to propose a patch for the generator
 
 ## Bullet points from [guide](https://github.com/rubygems/rubygems/blob/master/bundler/doc/contributing/ISSUES.md#user-content-reporting-unresolved-problems):
 
